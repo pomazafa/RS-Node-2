@@ -1,6 +1,8 @@
+const db = require('../../common/inMemoryDB');
+const TABLE_NAME = 'Users';
+
 const getAll = async () => {
-  // TODO: mock implementation. should be replaced during task development
-  return [];
+  return db.getAllEntities(TABLE_NAME);
 };
 
 module.exports = { getAll };

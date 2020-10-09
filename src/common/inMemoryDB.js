@@ -51,7 +51,9 @@ const getEntity = (tableName, id) => {
     throw new Error('DB problems');
   }
 
-  return entities;
+  return entities[0];
 };
+
+// ещё методы типа ремув и тд
 
 module.exports = { getAllEntities, getEntity };
