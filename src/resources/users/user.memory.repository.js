@@ -1,5 +1,6 @@
 const db = require('../../common/inMemoryDB');
 const TABLE_NAME = 'Users';
+const User = require('./user.model');
 
 const getAll = async () => {
   return db.getAllEntities(TABLE_NAME);
@@ -20,7 +21,7 @@ const remove = async id => {
 };
 
 const save = async user => {
-  return db.saveEntity(TABLE_NAME, user);
+  return db.saveEntity(TABLE_NAME, new User(user));
 };
 
 const update = async (id, user) => {
