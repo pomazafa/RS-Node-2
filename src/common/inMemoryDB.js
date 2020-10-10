@@ -54,6 +54,41 @@ const getEntity = (tableName, id) => {
   return entities[0];
 };
 
-// ещё методы типа ремув и тд
+const updateEntity = async (tableName, id, entity) => {
+  const oldEntity = getEntity(tableName, id);
+  if (oldEntity) {
+    db[tableName][db[tableName].indexOf(oldEntity)] = { ...entity };
+  }
 
-module.exports = { getAllEntities, getEntity };
+  return getEntity(tableName, id);
+};
+
+const saveEntity = (tableName, entity) => {
+  db[tableName].push(entity);
+
+  return getEntity(tableName, entity.id);
+};
+
+const removeEntity = (tableName, id) => {
+  const entity = getEntity(tableName, id);
+
+  if (entity) {
+    db[`fix${tableName}Structure`](entity);
+    const index = db[tableName].indexOf(entity);
+    db[tableName] = [
+      ...db[tableName].slice(0, index),
+      ...(db[tableName].length > index + 1
+        ? db[tableName].slice(index + 1)
+        : [])
+    ];
+  }
+  return entity;
+};
+
+module.exports = {
+  getAllEntities,
+  getEntity,
+  removeEntity,
+  saveEntity,
+  updateEntity
+};
