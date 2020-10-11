@@ -20,11 +20,20 @@ router
   .route('/:id')
   .get(async (req, res) => {
     const id = req.params.id;
-    res.json(await tasksService.get(id));
+    const result = await tasksService.get(id);
+    if (result) {
+      res.json(result);
+    } else {
+      res.sendStatus(404);
+    }
   })
   .put(async (req, res) => {
     const id = req.params.id;
     res.json(await tasksService.update(id, req.body));
+  })
+  .delete(async (req, res) => {
+    const id = req.params.id;
+    res.json(await tasksService.remove(id));
   });
 
 module.exports = router;

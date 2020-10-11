@@ -9,7 +9,8 @@ const getAll = async () => {
 const get = async id => {
   const board = await db.getEntity(TABLE_NAME, id);
   if (!board) {
-    throw new Error(`Board Not found: id=${id}`);
+    console.error(`Board Not found: id=${id}`);
+    return;
   }
   return board;
 };
@@ -28,9 +29,9 @@ const update = async (id, board) => {
   const entity = await db.updateEntity(TABLE_NAME, id, board);
 
   if (!entity) {
-    throw new Error(`Error while updating ${id} board`);
+    console.error(`Board Not found: id=${id}`);
+    return;
   }
-
   return entity;
 };
 

@@ -9,7 +9,8 @@ const getAll = async () => {
 const get = async id => {
   const task = await db.getEntity(TABLE_NAME, id);
   if (!task) {
-    throw new Error(`Task Not found: id=${id}`);
+    console.error(`Task Not found: id=${id}`);
+    return;
   }
   return task;
 };

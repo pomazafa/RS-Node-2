@@ -17,12 +17,20 @@ router
   .route('/:id')
   .get(async (req, res) => {
     const id = req.params.id;
-    res.json(await boardsService.get(id));
+    const result = await boardsService.get(id);
+    if (result) {
+      res.json(result);
+    } else {
+      res.sendStatus(404);
+    }
   })
   .put(async (req, res) => {
     const id = req.params.id;
     res.json(await boardsService.update(id, req.body));
+  })
+  .delete(async (req, res) => {
+    const id = req.params.id;
+    res.json(await boardsService.remove(id));
   });
-// router.route('/:boardId/tasks', taskRouter);
 
 module.exports = router;

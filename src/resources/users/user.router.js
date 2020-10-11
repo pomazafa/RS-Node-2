@@ -21,6 +21,10 @@ router
   .put(async (req, res) => {
     const id = req.params.id;
     res.json(await usersService.update(id, req.body));
+  })
+  .delete(async (req, res) => {
+    const id = req.params.id;
+    res.json(await usersService.remove(id));
   });
 
 module.exports = router;
