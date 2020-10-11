@@ -10,8 +10,17 @@ router
   })
   .post(async (req, res) => {
     const { id, login, name } = await usersService.save(req.body);
-    res.send({ id, login, name });
+    res.json({ id, login, name });
+  });
+router
+  .route('/:id')
+  .get(async (req, res) => {
+    const id = req.params.id;
+    res.json(await usersService.get(id));
   })
-  .put(async (req, res) => {});
+  .put(async (req, res) => {
+    const id = req.params.id;
+    res.json(await usersService.update(id, req.body));
+  });
 
 module.exports = router;

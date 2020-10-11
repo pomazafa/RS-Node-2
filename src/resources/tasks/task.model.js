@@ -5,7 +5,7 @@ class Task {
     id = uuid(),
     title = 'TASK',
     order = 'ORDER',
-    descriprion = 'DESCRIPTION',
+    description,
     userId = 0,
     boardId = 0,
     columnId = 0
@@ -13,7 +13,7 @@ class Task {
     this.id = id;
     this.title = title;
     this.order = order;
-    this.descriprion = descriprion;
+    this.description = description;
     this.userId = userId;
     this.boardId = boardId;
     this.columnId = columnId;
